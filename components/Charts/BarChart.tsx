@@ -1,8 +1,9 @@
 import React from "react";
+import { Chart as ChartJS, registerables } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+ChartJS.register(...registerables);
 
-const BarChart = ({ chartData }) => {
+const BarChart = ({ chartData }: any) => {
     return <Bar data={chartData} />;
 };
 

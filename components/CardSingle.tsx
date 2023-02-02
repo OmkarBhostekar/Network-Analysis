@@ -12,8 +12,8 @@ const CardSingle = ({ article }: any) => {
     };
 
     return (
-        <div className="pb-4 px-4">
-            <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:shadow-md dark:shadow-[#a29bfe] shadow-gray-200">
+        <div className="pb-4 px-4 mx-4 md:mx-0">
+            <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:shadow-sm dark:shadow-blue-800 shadow-gray-500">
                 <Image
                     className="lg:h-48 md:h-36 w-full object-cover object-center"
                     src={

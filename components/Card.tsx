@@ -13,7 +13,7 @@ const Card = ({ article }: any) => {
 
     return (
         <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
-            <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:shadow-md dark:shadow-[#a29bfe] shadow-gray-200">
+            <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:shadow-sm dark:shadow-[#a29bfe] shadow-gray-200">
                 <Image
                     className="lg:h-48 md:h-36 w-full object-cover object-center"
                     src={
