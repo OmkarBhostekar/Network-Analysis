@@ -1,5 +1,8 @@
 import React from "react";
 import { name } from "config";
+
+import Logo from "../public/landing/logo.svg";
+import Image from "next/image";
 const Footer = () => {
     return (
         <div>
@@ -145,8 +148,8 @@ const Footer = () => {
                             href="#"
                             className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white"
                         >
-                            <img
-                                src="./images/logo.svg"
+                            <Image
+                                src={Logo}
                                 className="h-6 mr-3 sm:h-9"
                                 alt="Logo"
                             />

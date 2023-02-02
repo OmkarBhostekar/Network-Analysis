@@ -1,6 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Images
 import Image from "next/image";
@@ -12,13 +12,36 @@ import Iffy from "../../public/iffy.png";
 import Rt from "../../public/rt.png";
 import Sputnik from "../../public/sputnik.png";
 import Twitter from "../../public/twitter.png";
-// import
 
 import { name, taglines, desc, features } from "config";
+
+import Card from "../../components/CardSingle";
 
 type Props = {};
 
 const page = (props: Props) => {
+    const [articles, setArticles] = useState([
+        {
+            id: 1,
+            title: "The 400 Blows",
+            category: "Drama",
+            description: "looremf lkajs klfja klfjd aksl fjjdsf ",
+            img: "https://dummyimage.com/720x400",
+        },
+    ]);
+
+    const fetchLatest = async () => {
+        // fetch(`/api/articles/latest`)
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     data.length = 6;
+        //     setArticles(data);
+        //   });
+    };
+
+    useEffect(() => {
+        fetchLatest();
+    }, []);
     return (
         <div className="bg-white">
             {/* Start block */}
@@ -192,7 +215,29 @@ const page = (props: Props) => {
                 </div>
             </section>
             {/* End block */}
+
+            <div className="pt-12 dark:bg-slate-800">
+                <div className="text-center">
+                    <p className="text-3xl font-bold tracking-wider dark:text-white">
+                        Featured Articles
+                    </p>
+                </div>
+                <div>
+                    <section className="text-gray-600 body-font">
+                        <div className="container px-5 py-24 mx-auto">
+                            <div className="flex flex-wrap -m-4">
+                                {articles.map((article, id) => {
+                                    return <Card key={id} article={article} />;
+                                })}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <hr className="w-full border-t border-[1px] border-gray-100 dark:border-black" />
             {/* Start block */}
+
             <section className="bg-gray-50 dark:bg-gray-800">
                 <div className="max-w-screen-xl px-4 py-8 mx-auto space-y-12 lg:space-y-20 lg:py-24 lg:px-6">
                     {/* Row */}
@@ -202,9 +247,7 @@ const page = (props: Props) => {
                                 Network Visualization
                             </h2>
                             <p className="mb-8 font-light lg:text-xl">
-                                A visual representation of the connections
-                                between accounts, showing the structure and
-                                patterns of the coordinated communities.
+                                {features["Network Visualization"]}
                             </p>
                             {/* List */}
                             <ul
@@ -286,13 +329,10 @@ const page = (props: Props) => {
                         />
                         <div className="text-gray-500 sm:text-lg dark:text-gray-400">
                             <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-                                We invest in the world’s potential
+                                Historical Data Analysis
                             </h2>
                             <p className="mb-8 font-light lg:text-xl">
-                                Deliver great service experiences fast - without
-                                the complexity of traditional ITSM solutions.
-                                Accelerate critical development work, eliminate
-                                toil, and deploy changes with ease.
+                                {features["Historical Data Analysis"]}
                             </p>
                             {/* List */}
                             <ul

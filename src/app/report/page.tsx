@@ -1,4 +1,4 @@
-import NodeGraph from "components/NodeGraph";
+import NodeGraph from "components/Charts/NodeGraph";
 import React from "react";
 import { Node, Edge } from "@/types/Graph";
 import Article from "components/report/Article";
