@@ -9,6 +9,7 @@ type Props = {
   edges: Edge[];
 };
 const options = {
+  autoResize: true,
   layout: {
     hierarchical: false,
   },
