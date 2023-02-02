@@ -20,6 +20,8 @@
 *.pem
 
 .env
+/ml/scraper/*.csv
+/ml/scraper/.ipynb_checkpoints
 
 # debug
 npm-debug.log*
