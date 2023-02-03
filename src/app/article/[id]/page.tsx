@@ -28,6 +28,7 @@ const page = ({ params }: any) => {
   const [graph, setGraph] = useState<Graph>();
   const [nodes, setNodes] = useState<Node[]>([{ id: 0, label: "Loading" }]);
   const [edges, setEdges] = useState<Edge[]>([]);
+  const [propagandas, setPropagandas] = useState<string[]>([]);
 
   const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
 
@@ -282,7 +283,7 @@ const page = ({ params }: any) => {
                     </div>
                     <div className="md:flex-grow">
                       <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
-                        {propaganda[propa]}
+                        {propagandaMap[propa]}
                       </h2>
                     </div>
                   </div>
@@ -295,10 +296,10 @@ const page = ({ params }: any) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 m-8 gap-4">
         <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
-          <PieChart chartData={tweetData} />
+          <PieChart chartData={pie1Data} />
         </div>
         <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
-          <PieChart chartData={userData} />
+          <PieChart chartData={pie2Data} />
         </div>
       </div>
     </>
