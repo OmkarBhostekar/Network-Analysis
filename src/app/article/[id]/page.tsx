@@ -1,47 +1,26 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import CardSingle from "../../../../components/CardSingle";
 import RelatedArticleCard from "components/RelatedArticleCard";
 import BarChart from "components/Charts/BarChart";
 import NodeGraph from "components/Charts/NodeGraph";
+import { Node, Edge } from "@/types/Graph";
+import { Article } from "@/types/Article";
 
 const Props = {};
 
-const page = (props: any) => {
-    // const router = useRouter();
-    // const { id } = router.query;
+const page = ({ params }: any) => {
+    const articleId = params["id"];
+    console.log(articleId);
 
     // let currArticle = allArticleFromDb.find((a) => a.id === `${articleId}`);
 
-    // static article
-    const currArticle = {
-        id: 1,
-        title: "How to use Next.js with TypeScript",
-        description: "Next.js is a React framework for production",
-        category: "React",
-        img: "https://dummyimage.com/720x400",
-    };
+    const [article, setArticle] = useState<Article | null>(null);
+    const [imgBlob, setImgBlob] = useState<string>("");
 
-    const [relatedArticles, setRelatedArticles] = useState([
-        {
-            id: 1,
-            title: "How to use Next.js with TypeScript",
-            description:
-                "Next.js is an open-source web development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites.",
-            category: "React",
-            img: "https://dummyimage.com/720x400",
-        },
-        {
-            id: 2,
-            title: "How to use Next.js with TypeScript",
-            description:
-                "Next.js is an open-source web development framework created by Vercel enabling React-based web applications with server-side rendering and generating static websites.",
-            category: "React",
-            img: "https://dummyimage.com/720x400",
-        },
-    ]);
+    const [relatedArticles, setRelatedArticles] = useState<Article[]>([]);
 
     const nodes: Node[] = [
         { id: 1, label: "Node 1" },
@@ -91,17 +70,59 @@ const page = (props: any) => {
         ],
     });
 
+    useEffect(() => {
+        fetchArticle();
+        fetchRecc();
+    }, []);
+
+    const fetchRecc = () => {
+        fetch(`/api/article/recommend/${articleId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setRelatedArticles(data);
+            });
+    };
+
+    useEffect(() => {
+        if (!article) return;
+        fetchImageBlob();
+    }, [article]);
+
+    const fetchImageBlob = () => {
+        // data:image/png;base64,
+        fetch(`/api/article/wordcloud`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ content: article!.content.slice(0, 100) }),
+        }).then((data) => {
+            console.log(data);
+            setImgBlob("data:image/png;base64, " + data);
+        });
+    };
+
+    const fetchArticle = () => {
+        fetch(`/api/article/${articleId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setArticle(data);
+                console.log(data);
+            });
+    };
+
     return (
         <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-32 w-full ">
-                <CardSingle article={currArticle} />
+                {article && <CardSingle article={article} />}
+
                 {/* image block */}
-                <div className="aspect-square w-auto md:w-full mx-8 md:mx-0">
-                    <img
-                        src={`data:image/png;base64, ` + currArticle.img}
-                        alt="blog"
-                        className="w-full h-full object-cover object-center dark:shadow-blue-800 shadow-sm rounded-md shadow-gray-500"
-                    />
+                <div className=" aspect-video w-auto md:w-full mx-8 md:mx-0">
+                    {imgBlob.length > 0 && (
+                        <img
+                            src={imgBlob}
+                            alt="blog"
+                            className="w-full h-full object-cover object-center dark:shadow-blue-800 shadow-sm rounded-md shadow-gray-500"
+                        />
+                    )}
                 </div>
 
                 {/* related articles */}
