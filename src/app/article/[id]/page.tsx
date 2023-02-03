@@ -10,8 +10,8 @@ import NodeGraph from "components/Charts/NodeGraph";
 const Props = {};
 
 const page = (props: any) => {
-    const router = useRouter();
-    const { id } = router.query;
+    // const router = useRouter();
+    // const { id } = router.query;
 
     // let currArticle = allArticleFromDb.find((a) => a.id === `${articleId}`);
 

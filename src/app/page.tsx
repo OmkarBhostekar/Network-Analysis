@@ -13,35 +13,27 @@ import Rt from "../../public/rt.png";
 import Sputnik from "../../public/sputnik.png";
 import Twitter from "../../public/twitter.png";
 
-import { name, taglines, desc, features } from "config";
+import { name, taglines, desc, features, articlesStatic } from "config";
 
 import Card from "../../components/CardSingle";
 
 type Props = {};
 
 const page = (props: Props) => {
-    const [articles, setArticles] = useState([
-        {
-            id: 1,
-            title: "The 400 Blows",
-            category: "Drama",
-            description: "looremf lkajs klfja klfjd aksl fjjdsf ",
-            img: "https://dummyimage.com/720x400",
-        },
-    ]);
+    const [articles, setArticles] = useState(articlesStatic);
 
-    const fetchLatest = async () => {
-        // fetch(`/api/articles/latest`)
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     data.length = 6;
-        //     setArticles(data);
-        //   });
-    };
+    // const fetchLatest = async () => {
+    //     // fetch(`/api/articles/latest`)
+    //     //   .then((res) => res.json())
+    //     //   .then((data) => {
+    //     //     data.length = 6;
+    //     //     setArticles(data);
+    //     //   });
+    // };
 
-    useEffect(() => {
-        fetchLatest();
-    }, []);
+    // useEffect(() => {
+    //     fetchLatest();
+    // }, []);
     return (
         <div className="bg-white">
             {/* Start block */}
