@@ -26,4 +26,5 @@ model Article {
   subtitle String
   image    String?
   uuid     String  @unique
+  wc       Bytes?
 }

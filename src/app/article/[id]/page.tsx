@@ -8,6 +8,8 @@ import BarChart from "components/Charts/BarChart";
 import NodeGraph from "components/Charts/NodeGraph";
 import { Node, Edge } from "@/types/Graph";
 import { Article } from "@/types/Article";
+import { log } from "console";
+import { arrayBuffer } from "node:stream/consumers";
 import PieChart from "components/Charts/PieChart";
 
 const Props = {};
