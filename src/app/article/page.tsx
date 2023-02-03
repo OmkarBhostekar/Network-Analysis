@@ -2,43 +2,19 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Card from "../../../components/Card";
+import { prisma } from "../../utils/db";
 
 const page = () => {
-    const [articles, setArticles] = useState([
-        {
-            id: 1,
-            title: "The 400 Blows faklsjf",
-            category: "Drama",
-            description: "looremf lkajs klfja klfjd aksl fjjdsf ",
-            img: "https://dummyimage.com/720x400",
-        },
-        {
-            id: 2,
-            title: "The 400 Blows",
-            category: "Drama",
-            description:
-                "looremf lkajs  fjksdl jklda jklfja klfjd  kfl jalkdfja lkfjsaklf jlksdfjaksl fjjdsf ",
-            img: "https://dummyimage.com/720x400",
-        },
-        {
-            id: 3,
-            title: "The 400 Blows",
-            category: "Drama",
-            description:
-                "looremf lkajs kfdsljf lkklfja klfjd  kfl jalkdfja lkfjsaklf jlksdfjaksl fjjdsf ",
-            img: "https://dummyimage.com/720x400",
-        },
-    ]);
+    const [articles, setArticles] = useState([]);
 
     const [search, setSearch] = useState("");
 
     const fetchLatest = async () => {
-        // fetch(`/api/articles/latest`)
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     data.length = 6;
-        //     setArticles(data);
-        //   });
+        fetch(`/api/article/search?q=${search}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setArticles(data);
+            });
     };
 
     useEffect(() => {
@@ -46,7 +22,7 @@ const page = () => {
     }, []);
 
     const clickHandler = (e: any) => {
-        console.log("clicked");
+        fetchLatest();
     };
 
     return (
@@ -82,6 +58,7 @@ const page = () => {
                         </div>
                         <button
                             type="submit"
+                            onClick={clickHandler}
                             className="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-violet-700 rounded-lg border border-violet-700 hover:bg-violet-800 focus:ring-4 focus:outline-none focus:ring-violet-300 dark:bg-violet-600 dark:hover:bg-violet-700 dark:focus:ring-violet-800"
                         >
                             <svg

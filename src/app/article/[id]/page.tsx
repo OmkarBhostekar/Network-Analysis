@@ -218,10 +218,10 @@ const page = ({ params }: any) => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 m-8 gap-4">
-                <div className="shadow-sm dark:shadow-blue-800 shadow-gray-500 rounded-md">
+                <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
                     <BarChart chartData={tweetData} />
                 </div>
-                <div className="shadow-sm dark:shadow-blue-800 shadow-gray-500 rounded-md">
+                <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
                     <BarChart chartData={userData} />
                 </div>
             </div>

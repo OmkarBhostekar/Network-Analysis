@@ -5,20 +5,14 @@ import Image from "next/image";
 type Props = {};
 
 const Card = ({ article }: any) => {
-    const router = useRouter();
-    const handleClick = (e: any, id: string) => {
-        e.preventDefault();
-        router.push(`/article/${id}`);
-    };
-
     return (
         <div className="p-4 lg:w-1/3 sm:w-1/2 w-full">
             <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden dark:shadow-sm dark:shadow-[#a29bfe] shadow-gray-200">
                 <Image
                     className="lg:h-48 md:h-36 w-full object-cover object-center"
                     src={
-                        article.img !== undefined
-                            ? article.img
+                        article.image !== undefined
+                            ? article.image
                             : `https://dummyimage.com/720x400`
                     }
                     alt="blog"
@@ -27,18 +21,18 @@ const Card = ({ article }: any) => {
                 />
                 <div className="p-6">
                     <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1 dark:text-gray-200">
-                        {article.category}
+                        {article.subtitle}
                     </h2>
                     <h1 className="title-font text-lg font-medium text-gray-900 dark:text-white mb-3">
                         {article.title}
                     </h1>
                     <p className="leading-relaxed mb-3 dark:text-gray-300">
-                        {article.description}
+                        {article.content?.slice(0, 300) + "..."}
                     </p>
                     <div className="flex items-center flex-wrap ">
                         <a
                             className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer"
-                            href={`/article/${article.id}`}
+                            href={`/article/${article.uuid}`}
                         >
                             Analyze
                             <svg
