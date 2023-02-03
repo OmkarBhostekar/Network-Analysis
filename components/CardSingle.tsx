@@ -9,10 +9,6 @@ type Props = {
 
 const CardSingle = ({ article }: Props) => {
     const router = useRouter();
-    const handleClick = (e: any, id: string) => {
-        e.preventDefault();
-        router.push(`/article/${id}`);
-    };
 
     return (
         <div className="pb-4 px-4 mx-4 md:mx-0">
@@ -41,9 +37,10 @@ const CardSingle = ({ article }: Props) => {
                     <div className="flex items-center flex-wrap">
                         <a
                             className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer"
-                            href={`/article/${article.id}`}
+                            href={article.url}
+                            target="_blank"
                         >
-                            Analyze
+                            Read More
                             <svg
                                 className="w-4 h-4 ml-2"
                                 viewBox="0 0 24 24"

@@ -30,6 +30,48 @@ const features = {
     "Data Export": "The ability to export the data and analysis results in various formats, enabling users to share their findings with others or integrate the data into their own tools and systems.",
 };
 
+const propagandaMap = {
+    red_herring:
+        "Introducing irrelevant material to the issue being discussed, so that everyone's attention is diverted away from the points made.",
+    straw_man:
+        "When an opponent's proposition is substituted with a similar one which is then refuted in place of the original proposition.",
+    whataboutism:
+        "A technique that attempts to discredit an opponent's position by charging them with hypocrisy without directly disproving their argument.",
+    casual_oversimplification:
+        "Assuming a single cause or reason when there are actually multiple causes for an issue.It includes transferring blame to one person or group of people without investigating the complexities of the issue",
+    appeal_to_authority:
+        "Stating that a claim is true simply because a valid authority or expert on the issue said it was true, without any other supporting evidence offered. We consider the special case in which the reference is not an authority or an expert in this technique, altough it is referred to as Testimonial in literature.",
+    "black-and-white_fallacy":
+        "Presenting two alternative options as the only possibilities, when in fact more possibilities exist. As an the extreme case, tell the audience exactly what actions to take, eliminating any other possible choices (Dictatorship).",
+    name_calling:
+        "Labeling the object of the propaganda campaign as either something the target audience fears, hates, finds undesirable or loves, praises.",
+    labeling:
+        "Labeling the object of the propaganda campaign as either something the target audience fears, hates, finds undesirable or loves, praises.",
+    loaded_language:
+        "Using specific words and phrases with strong emotional implications (either positive or negative) to influence an audience.",
+    exaggeration:
+        "Either representing something in an excessive manner: making things larger, better, worse (e.g., 'the best of the best', 'quality guaranteed') or making something seem less important or smaller than it really is (e.g., saying that an insult was just a joke).",
+    minimisation:
+        "Either representing something in an excessive manner: making things larger, better, worse (e.g., 'the best of the best', 'quality guaranteed') or making something seem less important or smaller than it really is (e.g., saying that an insult was just a joke).",
+    "flag-waving":
+        "Playing on strong national feeling (or to any group; e.g., race, gender, political preference) to justify or promote an action or idea",
+    doubt: "Questioning the credibility of someone or something.",
+    appeal_to_fear:
+        "Seeking to build support for an idea by instilling anxiety and/or panic in the population towards an alternativesome cases the support is built based on preconceived judgements.",
+    prejudice:
+        "Seeking to build support for an idea by instilling anxiety and/or panic in the population towards an alternativesome cases the support is built based on preconceived judgements.",
+    slogans:
+        "A brief and striking phrase that may include labeling and stereotyping. Slogans tend to act as emotional appeals.",
+    "thought-terminating_cliches":
+        "Words or phrases that discourage critical thought and meaningful discussion about a given topic. They are typically short, generic sentences that offer seemingly simple answers to complex questions or that distract attention away from other lines of thought.",
+    bandwagon:
+        "Attempting to persuade the target audience to join in and take the course of action because 'everyone else is taking the same action'.",
+    reductio_ad_hitlerum:
+        "Persuading an audience to disapprove an action or idea by suggesting that the idea is popular with groups hated in contempt by the target audience. It can refer to any person or concept with a negative connotation.",
+    repetition:
+        "Repeating the same message over and over again so that the audience will eventually accept it.",
+};
+
 const articlesStatic = [
     {
         "uuid": "25fa344c-6910-46d0-852f-d3e699761683",
@@ -61,5 +103,5 @@ const articlesStatic = [
 ]
 
 export {
-    name, taglines, desc, features, articlesStatic
+    name, taglines, desc, features, articlesStatic, propagandaMap
 }

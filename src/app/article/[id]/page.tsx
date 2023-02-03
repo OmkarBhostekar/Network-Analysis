@@ -13,6 +13,8 @@ import { arrayBuffer } from "node:stream/consumers";
 import { Graph } from "@/types/Nodes";
 import names from "../../../utils/names_mapping.json";
 
+import { propagandaMap } from "../../../../config";
+
 const Props = {};
 
 const page = ({ params }: any) => {
@@ -32,6 +34,33 @@ const page = ({ params }: any) => {
   const source = 90;
   const language = 60;
 
+  const [pie1, setPie1] = useState(50);
+  const [pie2, setPie2] = useState(50);
+
+  const [pie1Data, setPie1Data] = useState({
+    labels: ["Fake", "Not Fake"],
+    datasets: [
+      {
+        label: "Probability of News Source being Fake",
+        data: [pie1, 100 - pie1],
+        backgroundColor: ["rgb(129, 236, 236, 0.2)", "rgb(162, 155, 254, 0.2)"],
+        borderColor: ["#00cec9", "#6c5ce7"],
+        borderWidth: 1,
+      },
+    ],
+  });
+  const [pie2Data, setPie2Data] = useState({
+    labels: ["Bot", "Human"],
+    datasets: [
+      {
+        label: "Probability of Author being Bot",
+        data: [pie2, 100 - pie2],
+        backgroundColor: ["rgb(129, 236, 236, 0.2)", "rgb(162, 155, 254, 0.2)"],
+        borderColor: ["#00cec9", "#6c5ce7"],
+        borderWidth: 1,
+      },
+    ],
+  });
   const [tweetData, setTweetData] = useState({
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     datasets: [
@@ -97,10 +126,10 @@ const page = ({ params }: any) => {
       });
   };
 
-  // useEffect(() => {
-  //   if (!article) return;
-  //   fetchImageBlob();
-  // }, [article]);
+  useEffect(() => {
+    if (!article) return;
+    fetchImageBlob();
+  }, [article]);
 
   const fetchImageBlob = () => {
     // data:image/png;base64,
@@ -128,6 +157,7 @@ const page = ({ params }: any) => {
         console.log(data);
       });
   };
+  console.log(article);
 
   return (
     <>
@@ -135,15 +165,18 @@ const page = ({ params }: any) => {
         {article && <CardSingle article={article} />}
 
         {/* image block */}
-        <div className=" aspect-video w-auto md:w-full mx-8 md:mx-0">
-          {imgBlob.length > 0 && (
-            <img
-              src={imgBlob}
-              alt="blog"
-              className="w-full h-full object-cover object-center dark:shadow-blue-800 shadow-sm rounded-md shadow-gray-500"
-            />
-          )}
-        </div>
+        {/* <div className=" aspect-video w-auto md:w-full mx-8 md:mx-0">
+                    {article.wc.length > 0 && (
+                        <img
+                            src={
+                                "data:image/jpeg;base64," +
+                                window.btoa(article.wc)
+                            }
+                            alt="blog"
+                            className="w-full h-full object-cover object-center dark:shadow-blue-800 shadow-sm rounded-md shadow-gray-500"
+                        />
+                    )}
+                </div> */}
 
         {/* related articles */}
         <div>
@@ -189,7 +222,7 @@ const page = ({ params }: any) => {
               they read and the sources they trust.
             </p>
             <div className="flex flex-row items-center">
-              <div className="rounded-full tex-2xl font-bold bg-indigo-600 w-12 h-12 text-white dark:text-gray-200 flex items-center justify-center">
+              <div className="rounded-full text-2xl font-bold bg-indigo-600 w-12 h-12 text-white dark:text-gray-200 flex items-center justify-center">
                 <p>{source}</p>
               </div>
               <p className="text-2xl dark:text-gray-200 mx-2 font-bold">
@@ -227,11 +260,45 @@ const page = ({ params }: any) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 m-8 gap-4">
-        <div className="shadow-sm dark:shadow-blue-800 shadow-gray-500 rounded-md">
+        <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
           <BarChart chartData={tweetData} />
         </div>
-        <div className="shadow-sm dark:shadow-blue-800 shadow-gray-500 rounded-md">
+        <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
           <BarChart chartData={userData} />
+        </div>
+      </div>
+
+      <div className="m-8">
+        <section className="text-gray-600 body-font overflow-hidden">
+          <div className="container px-5 py-24 mx-auto">
+            <div className="-my-8 divide-y-2 divide-gray-100">
+              {propagandas.map((propa: any, id: any) => {
+                return (
+                  <div key={id} className="py-8 flex flex-wrap md:flex-nowrap">
+                    <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                      <span className="font-semibold title-font text-gray-700">
+                        {propa}
+                      </span>
+                    </div>
+                    <div className="md:flex-grow">
+                      <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
+                        {propaganda[propa]}
+                      </h2>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 m-8 gap-4">
+        <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
+          <PieChart chartData={tweetData} />
+        </div>
+        <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
+          <PieChart chartData={userData} />
         </div>
       </div>
     </>
