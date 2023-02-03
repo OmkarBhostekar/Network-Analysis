@@ -25,6 +25,7 @@
 /ml/scraper/.ipynb_checkpoints
 /ml/scraper/*.joblib
 /ml/scraper/*.pkl
+/ml/__pycache__/*
 
 # debug
 npm-debug.log*
