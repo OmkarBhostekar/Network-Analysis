@@ -197,7 +197,7 @@ const page = (props: Props) => {
                                         />
                                     </svg>
                                     <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                                        Continuous integration and deployment
+                                        Activity Monitoring
                                     </span>
                                 </li>
                                 <li className="flex space-x-3">
@@ -215,7 +215,7 @@ const page = (props: Props) => {
                                         />
                                     </svg>
                                     <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                                        Development workflow
+                                        Harm Estimation
                                     </span>
                                 </li>
                                 <li className="flex space-x-3">
@@ -238,8 +238,7 @@ const page = (props: Props) => {
                                 </li>
                             </ul>
                             <p className="mb-8 font-light lg:text-xl">
-                                Deliver great service experiences fast - without
-                                the complexity of traditional ITSM solutions.
+                                Your Guide to a Transparent Social Web
                             </p>
                         </div>
                         <Image
@@ -318,7 +317,7 @@ const page = (props: Props) => {
                                         />
                                     </svg>
                                     <span className="text-base font-medium leading-tight text-gray-900 dark:text-white">
-                                        Development workflow
+                                        Network Visualization
                                     </span>
                                 </li>
                                 <li className="flex space-x-3">

@@ -160,7 +160,7 @@ const page = ({ params }: any) => {
                 {/* <div className=" aspect-video w-auto md:w-full mx-8 md:mx-0">
                     {article.wc.length > 0 && (
                         <img
-                            src={
+                            src={ 
                                 "data:image/jpeg;base64," +
                                 window.btoa(article.wc)
                             }
@@ -245,12 +245,12 @@ const page = ({ params }: any) => {
             <div className="flex flex-row m-8 gap-8 justify-center items-center">
                 <div className="w-10/12 h-10/12 max-w-[350px] p-8 shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
                     <p className="text-2xl font-bold tracking-wide dark:text-white my-4"></p>
-                    <PieChart chartData={tweetData} />
+                    <PieChart chartData={pie1Data} />
                 </div>
                 <div className="w-10/12 h-10/12 max-w-[350px] p-8 shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
                     <PieChart
                         className="w-10/12 h-10/12"
-                        chartData={userData}
+                        chartData={pie2Data}
                     />
                 </div>
             </div>
