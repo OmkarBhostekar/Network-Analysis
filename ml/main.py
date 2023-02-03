@@ -101,20 +101,19 @@ def check(uuid):
                 continue
             date_y = y[1].split('T')[0]
             time_y = y[1].split('T')[1].split('.')[0]
-            if date_x == date_y:
-                hour_x, hour_y = int(time_x.split(':')[0]), int(time_y.split(':')[0])
-                min_x, min_y = int(time_x.split(':')[1]), int(time_y.split(':')[1])
-                sec_x, sec_y = int(time_x.split(':')[2]), int(time_y.split(':')[2])
-                # index_x = author_ids.index(x[0])
-                # index_y = author_ids.index(y[0])
-                # a, b = min(index_x, index_y), max(index_x, index_y)
-                if (
-                    abs(min_y - min_x) <= 15
-                    and hour_x - hour_y == 0
-                ):
-                    edges.append([x[0], y[0]]) 
-                s.add(x[0])
-                s.add(y[0])
+            # if date_x == date_y:
+            hour_x, hour_y = int(time_x.split(':')[0]), int(time_y.split(':')[0])
+            min_x, min_y = int(time_x.split(':')[1]), int(time_y.split(':')[1])
+            sec_x, sec_y = int(time_x.split(':')[2]), int(time_y.split(':')[2])
+            # index_x = author_ids.index(x[0])
+            # index_y = author_ids.index(y[0])
+            # a, b = min(index_x, index_y), max(index_x, index_y)
+            if (
+                abs(hour_x - hour_y) <= 1
+            ):
+                edges.append([x[0], y[0]]) 
+            s.add(x[0])
+            s.add(y[0])
     retweet_count = Counter()
     for i in range(len(d[uuid][3])):
         if(type(d[uuid][3][i]) == str):
