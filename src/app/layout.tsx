@@ -36,6 +36,7 @@ export default async function RootLayout({
                     content="width=device-width, initial-scale=1, shrink-to-fit=no"
                 />
                 <meta name="theme-color" content="#000000" />
+                <link rel="manifest" href="/manifest.json"></link>
                 <title>{name}</title>
             </head>
             <Script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></Script>
