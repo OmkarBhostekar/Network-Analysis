@@ -5,4 +5,5 @@ export type Article = {
   uuid: string;
   image?: string;
   content: string;
+  wc?: string;
 };

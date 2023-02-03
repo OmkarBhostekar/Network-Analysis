@@ -26,6 +26,7 @@
 /ml/scraper/*.joblib
 /ml/scraper/*.pkl
 /ml/__pycache__/*
+/ml/tweets/*
 
 # debug
 npm-debug.log*

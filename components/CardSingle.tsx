@@ -36,9 +36,9 @@ const CardSingle = ({ article }: Props) => {
             {article.title}
           </h1>
           <p className="leading-relaxed mb-3 dark:text-gray-300">
-            {article.content.slice(0, 300) + "..."}
+            {article?.content?.slice(0, 300) + "..."}
           </p>
-          <div className="flex items-center flex-wrap ">
+          <div className="flex items-center flex-wrap">
             <a
               className="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0 cursor-pointer"
               href={`/article/${article.id}`}

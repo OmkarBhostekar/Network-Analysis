@@ -8,6 +8,8 @@ import BarChart from "components/Charts/BarChart";
 import NodeGraph from "components/Charts/NodeGraph";
 import { Node, Edge } from "@/types/Graph";
 import { Article } from "@/types/Article";
+import { log } from "console";
+import { arrayBuffer } from "node:stream/consumers";
 
 const Props = {};
 
@@ -70,17 +72,17 @@ const page = ({ params }: any) => {
   }, []);
 
   const fetchRecc = () => {
-    fetch(`/api/article/recommend/${articleId}`)
+    fetch(`/api/article/rec?id=${articleId}`)
       .then((res) => res.json())
       .then((data) => {
-        setRelatedArticles(data);
+        setRelatedArticles(data.slice(0, 3));
       });
   };
 
-  useEffect(() => {
-    if (!article) return;
-    fetchImageBlob();
-  }, [article]);
+  // useEffect(() => {
+  //   if (!article) return;
+  //   fetchImageBlob();
+  // }, [article]);
 
   const fetchImageBlob = () => {
     // data:image/png;base64,
@@ -99,13 +101,21 @@ const page = ({ params }: any) => {
       .then((res) => res.json())
       .then((data) => {
         setArticle(data);
+        console.log(typeof data.wc.data);
+
+        const buffer = Buffer.from(data.wc.data);
+
+        const base64String = buffer.toString("base64");
+        setImgBlob("data:image/png;base64, " + base64String);
+        // console.log(base64String);
+
         console.log(data);
       });
   };
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-32 w-full ">
+      <div className="my-card mx-4 px-3 pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-32">
         {article && <CardSingle article={article} />}
 
         {/* image block */}
