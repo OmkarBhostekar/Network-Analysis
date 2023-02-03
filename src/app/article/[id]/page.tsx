@@ -8,6 +8,7 @@ import BarChart from "components/Charts/BarChart";
 import NodeGraph from "components/Charts/NodeGraph";
 import { Node, Edge } from "@/types/Graph";
 import { Article } from "@/types/Article";
+import PieChart from "components/Charts/PieChart";
 
 const Props = {};
 
@@ -69,6 +70,51 @@ const page = ({ params }: any) => {
             },
         ],
     });
+
+    // from ml
+    const propagandas: any[] = [];
+
+    const propaganda = {
+        red_herring:
+            "Introducing irrelevant material to the issue being discussed, so that everyone's attention is diverted away from the points made.",
+        straw_man:
+            "When an opponent's proposition is substituted with a similar one which is then refuted in place of the original proposition.",
+        whataboutism:
+            "A technique that attempts to discredit an opponent's position by charging them with hypocrisy without directly disproving their argument.",
+        casual_oversimplification:
+            "Assuming a single cause or reason when there are actually multiple causes for an issue.It includes transferring blame to one person or group of people without investigating the complexities of the issue",
+        appeal_to_authority:
+            "Stating that a claim is true simply because a valid authority or expert on the issue said it was true, without any other supporting evidence offered. We consider the special case in which the reference is not an authority or an expert in this technique, altough it is referred to as Testimonial in literature.",
+        "black-and-white_fallacy":
+            "Presenting two alternative options as the only possibilities, when in fact more possibilities exist. As an the extreme case, tell the audience exactly what actions to take, eliminating any other possible choices (Dictatorship).",
+        name_calling:
+            "Labeling the object of the propaganda campaign as either something the target audience fears, hates, finds undesirable or loves, praises.",
+        labeling:
+            "Labeling the object of the propaganda campaign as either something the target audience fears, hates, finds undesirable or loves, praises.",
+        loaded_language:
+            "Using specific words and phrases with strong emotional implications (either positive or negative) to influence an audience.",
+        exaggeration:
+            "Either representing something in an excessive manner: making things larger, better, worse (e.g., 'the best of the best', 'quality guaranteed') or making something seem less important or smaller than it really is (e.g., saying that an insult was just a joke).",
+        minimisation:
+            "Either representing something in an excessive manner: making things larger, better, worse (e.g., 'the best of the best', 'quality guaranteed') or making something seem less important or smaller than it really is (e.g., saying that an insult was just a joke).",
+        "flag-waving":
+            "Playing on strong national feeling (or to any group; e.g., race, gender, political preference) to justify or promote an action or idea",
+        doubt: "Questioning the credibility of someone or something.",
+        appeal_to_fear:
+            "Seeking to build support for an idea by instilling anxiety and/or panic in the population towards an alternativesome cases the support is built based on preconceived judgements.",
+        prejudice:
+            "Seeking to build support for an idea by instilling anxiety and/or panic in the population towards an alternativesome cases the support is built based on preconceived judgements.",
+        slogans:
+            "A brief and striking phrase that may include labeling and stereotyping. Slogans tend to act as emotional appeals.",
+        "thought-terminating_cliches":
+            "Words or phrases that discourage critical thought and meaningful discussion about a given topic. They are typically short, generic sentences that offer seemingly simple answers to complex questions or that distract attention away from other lines of thought.",
+        bandwagon:
+            "Attempting to persuade the target audience to join in and take the course of action because 'everyone else is taking the same action'.",
+        reductio_ad_hitlerum:
+            "Persuading an audience to disapprove an action or idea by suggesting that the idea is popular with groups hated in contempt by the target audience. It can refer to any person or concept with a negative connotation.",
+        repetition:
+            "Repeating the same message over and over again so that the audience will eventually accept it.",
+    };
 
     useEffect(() => {
         fetchArticle();
@@ -223,6 +269,43 @@ const page = ({ params }: any) => {
                 </div>
                 <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
                     <BarChart chartData={userData} />
+                </div>
+            </div>
+
+            <div className="m-8">
+                <section className="text-gray-600 body-font overflow-hidden">
+                    <div className="container px-5 py-24 mx-auto">
+                        <div className="-my-8 divide-y-2 divide-gray-100">
+                            {propagandas.map((propa: any, id: any) => {
+                                return (
+                                    <div
+                                        key={id}
+                                        className="py-8 flex flex-wrap md:flex-nowrap"
+                                    >
+                                        <div className="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                                            <span className="font-semibold title-font text-gray-700">
+                                                {propa}
+                                            </span>
+                                        </div>
+                                        <div className="md:flex-grow">
+                                            <h2 className="text-2xl font-medium text-gray-900 title-font mb-2">
+                                                {propaganda[propa]}
+                                            </h2>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 m-8 gap-4">
+                <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
+                    <PieChart chartData={tweetData} />
+                </div>
+                <div className="shadow-sm dark:text-white dark:shadow-blue-800 shadow-gray-500 rounded-md">
+                    <PieChart chartData={userData} />
                 </div>
             </div>
         </>
