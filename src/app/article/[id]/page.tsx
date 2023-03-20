@@ -187,7 +187,7 @@ const Page = ({ params }: any) => {
         let keys = article["keys"];
         // @ts-ignore
         let prob = article["prob"];
-        keys = keys.slice(1, keys.length - 1).split(", ");
+        keys = keys?.slice(1, keys.length - 1).split(", ");
         const k = [];
         for (let key of keys) {
             k.push(key.slice(1, key.length - 1));
