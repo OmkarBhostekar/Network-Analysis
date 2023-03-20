@@ -27,4 +27,8 @@ model Article {
   image    String?
   uuid     String  @unique
   wc       Bytes?
+  keywords String?
+  url      String?
+  keys     String?
+  prob     String?
 }
