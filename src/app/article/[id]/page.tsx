@@ -103,7 +103,7 @@ const Page = ({ params }: any) => {
                 id: node,
                 // @ts-ignore
                 label:
-                    names[node] ??
+                    names.node ??
                     Math.round(Math.random() * 100000).toString(),
             });
         }
